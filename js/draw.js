@@ -11,7 +11,7 @@ $( "button" ).click(function() {
       if (Math.random()<num/9322*(a.predictpl)/(a.lotsnum)){
         return 1;
       }
-      else {return 0;}
+      else {return 0.1;}
     };
 
     var geojsonMarkerOptions=function(e){
