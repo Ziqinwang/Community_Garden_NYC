@@ -1,119 +1,194 @@
-body {
-    padding: 0;
-    overflow: hidden;
-    font-family: helvetica, arial, sans-serif;
-}
-
-#time-window {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    z-index: 1000;
-    background-color: white;
-    padding: 0px 10px 0px 10px;
-}
-
-.map {
-    position: absolute;
-    /*right: 0px;
-    left: 340px;*/
-    width:100%;
-    height: 100%;
-    top: 0;
-    z-index: 10;
-}
-
-.button {
+.android-header.mdl-layout__header.mdl-layout__header--waterfall {
+  overflow: visible;
   background-color: white;
-  z-index: 2000;
-  position: absolute;
-  transition: 0.6s ease;
-  border: none;
-  font-size: 15px;
-  left:25%;
 }
 
-#input {
+.android-header .mdl-layout__header-row{
+  color: #757575;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+#change-color{
+  color: #757575;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+
+
+.android-be-together-section {
+  position: relative;
+  height: 500px;
+  width: auto;
+  /*background-color: #f3f3f3;*/
+  /*background: url('images/slide01.jpg') center 30% no-repeat;*/
+  background-size: cover;
+}
+
+.logo-font {
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  line-height: 1;
+  color: #767777;
+  font-weight: 500;
+}
+
+.android-create-character {
+  font-size: 21px;
+  padding-top: 400px;
+}
+
+#map {
+  height: 500px;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+#map2 {
+  height: 500px;
+  width: auto;
+}
+
+.set-font {
+  right: 12.606px;
+  top: 158.075px;
+  width: 260px;
   background-color: white;
-  z-index: 2000;
+  z-index: 100;
   position: absolute;
-  /*transition: 0.6s ease;
-  border: none;
-  font-size: 15px;*/
-  font-size: 15px;
-  left:6%;
-  border: none;
 }
 
-.sidebar {
-    position: absolute;
-    left: 0px;
-    width: 300px;
-    top: 0;
-    bottom: 0;
-    overflow-y: auto;
-    padding: 20px;
-    padding-bottom: 60px;
+
+.demo.mdl-card {
+  right: -75%;
+  top: -128.925px;
+  width: 260px;
+}
+.demo > .mdl-card__title {
+  color: #fff;
+  height: 150px;
+   background: #d9006e;
+  /*background:url('https://s-media-cache-ak0.pinimg.com/564x/5b/19/46/5b19464caeab4d5452b9b20893af5467.jpg') center / cover;*/
 }
 
-.title{
-  /*position: absolute;*/
-  top: 10px;
-  left: 20px;
-  font-family: helvetica, arial, sans-serif;
-  font-size:20px;
-  font-weight:bold;
-  background-color: grey;
+.demo-card-square.mdl-card {
+  left: 11.606px;
+  top: 158.075px;
+  width: 260px;
 }
 
-p{
-  font-weight:normal;
-  font-family: arial;
-  font-size:15px;
+.dcs.mdl-card {
+  left: 11.606px;
+  top: 158.075px;
+  width: 260px;
 }
 
-.item {
-    padding: 10px;
-    background-color: #eee;
+.bar.mdl-card {
+  left: 11.606px;
+  top: 158.075px;
+  width: 300px;
 }
 
-.item:not(:last-child) {
-    margin-bottom: 10px;
+.demo-card-square > .mdl-card__title {
+  color: #fff;
+  height: 150px;
+  background:url('https://s-media-cache-ak0.pinimg.com/564x/5b/19/46/5b19464caeab4d5452b9b20893af5467.jpg') center / cover;
 }
 
-.item-heading {
-    font-size: 18px;
-    margin-top: 0;
-    font-weight: bold;
+/*.demo-card-square > .mdl-card__title2 {
+  color: #fff;
+  height: 150px;
+}*/
+
+h2.mdl-card__title-text.title-front{
+  font-size: 20px;
+  margin: 0 0 0px;
 }
 
-.sort {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 340px;
-    background-color: #fff;
-    padding: 20px;
+/*.text-line-button{
+  left: 11.606px;
+  top: 58.075px;
+  height: 176px;
+  width: 100px;
+  color: #fff;
+  overflow-y: 300;
+}*/
+#NB{
+  z-index: 1000;
+  position: absolute;
+  top: 126px;
+  left: 173px;
+  background-color: white;
+}
+.mdl-textfield__input{
+  width:20px;
 }
 
-.sort-option {
-    margin-left: 10px;
+.demo-card-image.mdl-card {
+  width: 140px;
+  height: 152px;
+  background: #d9006e;
+  left: 87%;
+  top: -29%;
 }
 
-.sort-option.selected {
-    border-bottom: 1px solid #ccc;
+.dcard.mdl-card {
+  width: 140px;
+  height: 152px;
+  background: #d9006e;
+  left: 87%;
+  top: 11%;
 }
 
-.sidebar nav.navbar-default {
-    border: 0;
-    border-radius: 0;
-    background-color: #fff;
-    border-bottom: 1px solid #eee;
-    margin: -14px -20px 20px;
-    padding: 0 5px;
+.dcard> .mdl-card__title {
+  color:#fff;
+  height: 81px;
+  background:url('https://s-media-cache-ak0.pinimg.com/564x/c4/6d/a9/c46da97ddba50de6be95f734429af854.jpg') center / cover;
 }
 
-.navbar-brand {
-    font-size: 14px;
-    font-weight: bold;
+
+.button{
+      left: -189.394px;
+      top: -166.925px;
+      width: 96px;
+      z-index: 100;
+}
+
+.input{
+      left: -176.394px;
+      top: -212.925px;
+      width: 79px;
+      z-index: 100;
+      background-color: rgba(255, 255, 255, 0.43);
+}
+
+.logo-font {
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  line-height: 1;
+  color: #767777;
+  font-weight: 500;
+}
+
+.android-slogan {
+  font-size: 60px;
+  padding-top: 160px;
+}
+
+.android-sub-slogan {
+  font-size: 21px;
+  padding-top: 24px;
+}
+
+.foot{
+  height: 100px;
+  background-color: #37474f;
+}
+
+#share-buttons img {
+width: 35px;
+padding: 5px;
+border: 0;
+box-shadow: 0;
+display: inline;
 }

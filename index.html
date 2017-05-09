@@ -2,35 +2,118 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <title>NYC Community Garden</title>
     <!-- CSS Imports -->
-    <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/@mapbox/leaflet-pip@latest/leaflet-pip.js"></script>
+
+    <script src='https://api.mapbox.com/mapbox.js/v3.1.0/mapbox.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/v3.1.0/mapbox.css' rel='stylesheet' />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.9/leaflet.draw.css" />
-    <!-- <link rel="stylesheet" href="css/reset.css" /> -->
     <link rel="stylesheet" href="css/style.css" />
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.mapbox.css' rel='stylesheet' />
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/css/font-awesome.min.css' rel='stylesheet' />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <style>
+    #view-source {
+      position: fixed;
+      display: block;
+      right: 0;
+      bottom: 0;
+      margin-right: 40px;
+      margin-bottom: 40px;
+      z-index: 900;
+    }
+    </style>
   </head>
   <body>
-    <!-- Sidebar -->
-    <!-- <div class="sidebar"> -->
-      <!-- <div class="title", id='A'>Chicago Food Inspection -->
-        <!-- <p>The Department of Public Health in Chicago is responsible for promoting public health in the areas of food safety and sanitation to prevent the spread of foodborne disease.Centers for Disease Control and Prevention estimated that there are around 3000 people die from foodborne diseases each year in the United States. </p> -->
-      <!-- </div>
-    </div> -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <div class="android-header mdl-layout__header mdl-layout__header--waterfall">
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-title">Home</span>
+          <!-- Add spacer, to align navigation to the right in desktop -->
+          <div class="mdl-layout-spacer"></div>
+          <!-- Navigation -->
+          <div class="navigation-container">
+            <nav class="mdl-navigation" >
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" id="change-color" href="">Community Garden in New York City</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+      <div class="android-content mdl-layout__content">
+        <div class="android-be-together-section mdl-typography--text-center">
+          <div id="map">
+            <div class="demo-card-square mdl-card mdl-shadow--2dp">
+              <div class="mdl-card__title mdl-card--expand">
+                <h2 class="mdl-card__title-text title-front">Welcome</h2>
+              </div>
+              <div class="mdl-card__supporting-text">
+                Draw an area in Manhattan and view the community gardens in the region
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onclick="drawControl._toolbars[L.DrawToolbar.TYPE]._modes.polygon.handler.enable()">
+                  Draw
+                </a>
+              </div>
+            </div>
+            <div class="demo mdl-card mdl-shadow--2dp hide">
+              <div id="results" class="mdl-card__title mdl-card--expand"></div>
+              <div class="mdl-card__actions mdl-card--border hide">
+                <a id='export' class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onclick="drawControl._toolbars[L.DrawToolbar.TYPE]._modes.polygon.handler.enable()">
+                  Export Data
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="android-be-together-section mdl-typography--text-center">
+          <div class="logo-font android-slogan">Plan Future Garden in a Easier Way.</div>
+          <div class="logo-font android-sub-slogan">The analysis model allows you find the most suitable vacant lot to become a garden. </div>
+          <div class="logo-font android-sub-slogan">Just Assign the number and let us calculate! </div>
+        </div>
+        <div class="android-be-together-section mdl-typography--text-center">
+          <div id="map2">
+            <div id ="display" class="dcs mdl-card">
+              <div  id="chart_div">
+              </div>
+            </div>
+            <div class="dcard mdl-card">
+              <div  class="mdl-card__title"></div>
+              <div class="mdl-card__actions">
+                <span class="demo-card-image__filename">
+                  <form action="#">
+                    <div class="mdl-textfield mdl-js-textfield">
+                      <input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id="input">
+                      <label  class="mdl-textfield__label">Some Nutmber?</label>
+                      <span class="mdl-textfield__error">Input is not a number!</span>
+                    </div>
+                  </form>
+                  <button class="buttonT mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                    Button
+                  </button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="foot mdl-typography--text-center">
 
-    <input id="input" class="input" type="number" placeholder="1000" value="2000" >
-    <button class='button'>Click</button>
-    <!-- Map -->
-    <div id="map" class="map">
-      <!-- <div id="time-window"></div> -->
+        </div>
+      <!-- </div> -->
     </div>
+    <a href="https://github.com/google/material-design-lite/blob/mdl-1.x/templates/android-dot-com/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">View Source</a>
     <!-- Javascript Imports -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-    <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.9/leaflet.draw.js"></script>
     <script src="js/underscore.js"></script>
     <script src="js/setup.js"></script>
     <script src="js/draw.js"></script>
+    <script src="js/bk_draw.js"></script>
   </body>
 </html>

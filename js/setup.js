@@ -1,81 +1,52 @@
-//set basemap
-var map = L.map('map',{
-          center:[40.743395, -73.993251],
-          zoom: 11
-        });
+// //set basemap
 
-titleLayer = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
-           maxZoom: 18,
-           attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy;<a href="https://carto.com/attribution">CARTO</a>'
-      }).addTo(map);
-
-//load the original dataset
-var gardenraw ='https://gist.githubusercontent.com/Ziqinwang/9cec262ea6a6c62d5567d6f3b7608e67/raw/b20d04529fc417a65578b0bb4454c3091e0d8a47/bk_point.json',
-    gardendata = [];
+// //load the original dataset
+var gardenraw ='https://gist.githubusercontent.com/Ziqinwang/1d74b9a1bf1325b2435bf1ec70e3e6ca/raw/4bc038f58bc68349f8cce013fc2ea826398d7bee/m_12_point.json';
+var gardenpoint ='https://gist.githubusercontent.com/Ziqinwang/23ac3f51ac0d753938102e73d00c89da/raw/df160ebb6b187086e00c8dc20867efe8e0f74843/bk_point2.geojson';
+var bk ='https://gist.githubusercontent.com/Ziqinwang/b57362aafe8a337595017951b6fc5aa1/raw/fee5f773540d9ffd368997d8265f6bc38656a44c/bk_block2.geojson';
 
 var resetMap = function(){
- map.eachLayer(function (layer) {
-   //console.log(layer);
-    if (layer != titleLayer ) {
-     map.removeLayer(layer);
+  assetLayerGroup.clearLayers();
+};
+//
+var resetMap2 = function(){
+  assetLayerGroup2.clearLayers();
+};
+
+var inside = function(point,vs) {
+    var x = point[0], y = point[1];
+    var inside = false;
+    for (var i = 0, j = vs.length - 1; i < vs.length; j = i++) {
+        var xi = vs[i][0], yi = vs[i][1];
+        var xj = vs[j][0], yj = vs[j][1];
+        var intersect = ((yi > y) != (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+        if (intersect) inside = !inside;
     }
- });
+    return inside;
 };
 
 
+L.mapbox.accessToken = 'pk.eyJ1Ijoid2FnbnppcWluIiwiYSI6ImNpdnNpbGRqazA1NTEyeWxkbWNvbXF3dXoifQ.N5sKiFdNKqGmibQ30RSXMw';
+//base map
+var map = L.mapbox.map('map')
+  .setView([40.743395, -73.993251], 12);
+var map2 = L.mapbox.map('map2')
+  .setView([40.646606, -73.956350], 11);
+//I try to use the mapbox js plugins to find the user's location, but this plugin does not work. LoL
+L.control.locate().addTo(map);
+// group to store layers
+var assetLayerGroup = L.layerGroup().addTo(map);
+var assetLayerGroup2 = L.layerGroup().addTo(map2);
+L.control.layers({
+  'Dark': L.mapbox.styleLayer('mapbox://styles/mapbox/dark-v9').addTo(map),
+  'Light': L.mapbox.styleLayer('mapbox://styles/mapbox/light-v9'),
+  'Streets': L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v9'),
+  'Satellite': L.mapbox.styleLayer('mapbox://styles/mapbox/satellite-v9')
+}).addTo(map);
 
-// $(document).ready(function() {
-//
-//   function inside(point, vs) {
-//       var x = point[0], y = point[1];
-//       var inside = false;
-//       for (var i = 0, j = vs.length - 1; i < vs.length; j = i++) {
-//           var xi = vs[i][0], yi = vs[i][1];
-//           var xj = vs[j][0], yj = vs[j][1];
-//           var intersect = ((yi > y) != (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
-//           if (intersect) inside = !inside;
-//       }
-//       return inside;
-//   }
-//
-//   points = [
-//     [-73.98433685302736,40.76091081214379],
-//     [-74.00493621826173,40.75310895587201],
-//     [-73.98365020751955,40.7429651739036]
-//   ];
-//
-//   var judge = function(a){
-//     var ra = [a.lng,a.lat];
-//     //var test = inside(ra, points);
-//     var test = inside(ra, poly);
-//     //console.log(a.lat);
-//     if (test===true){return 1;}
-//     else if(test===false){return 0.1;}
-//   };
-//   // var judge = function(){
-//   //   if (Math.random()>0.5){
-//   //     return 1;}
-//   //   else {return 0.1;}
-//   // }
-//
-//   var geojsonMarkerOptions =function(e){
-//     return {
-//       radius: 3,
-//       fillColor: "#ff7800",
-//       stroke:false,
-//       fillOpacity: judge(e)
-//       //fillOpacity: judge()
-//     }
-//   };
-//
-//
-//   $.ajax(gardenraw).done(function(data){
-//     var parsedData = JSON.parse(data);
-//     L.geoJSON(parsedData,  {
-//       pointToLayer: function (feature, latlng) {
-//         return L.circleMarker(latlng, geojsonMarkerOptions(latlng))
-//       }
-//     }).addTo(map);
-//   });
-//
-// });
+L.control.layers({
+  'Dark': L.mapbox.styleLayer('mapbox://styles/mapbox/dark-v9').addTo(map2),
+  'Light': L.mapbox.styleLayer('mapbox://styles/mapbox/light-v9'),
+  'Streets': L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v9'),
+  'Satellite': L.mapbox.styleLayer('mapbox://styles/mapbox/satellite-v9')
+}).addTo(map2);
