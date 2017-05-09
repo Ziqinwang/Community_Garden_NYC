@@ -1,5 +1,5 @@
 # Spatial analysis of community garden in New York City
-:clap::clap::clap:Final Project for CPLN-692 / MUSA-611 JavaScript Programming for Planners and Designers, and web design part for MUSA 800 Capstone Project.
+:clap::clap::clap:Final Project for CPLN-692 / MUSA-611 JavaScript Programming for Planners and Designers, and web design part for MUSA-800 Capstone Project.
 
 ## Data Visulization
 
