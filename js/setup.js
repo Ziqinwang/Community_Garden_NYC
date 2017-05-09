@@ -1,7 +1,7 @@
 // //set basemap
 
 // //load the original dataset
-var gardenraw ='https://gist.githubusercontent.com/Ziqinwang/1d74b9a1bf1325b2435bf1ec70e3e6ca/raw/4bc038f58bc68349f8cce013fc2ea826398d7bee/m_12_point.json';
+var gardenraw ='https://gist.githubusercontent.com/Ziqinwang/2cd90ad8a91216d1ebcc5f2e9bb09cbe/raw/d8b81658f7859211f598ed5f0c545ad44227052c/manhattan_point.geojson';
 var gardenpoint ='https://gist.githubusercontent.com/Ziqinwang/23ac3f51ac0d753938102e73d00c89da/raw/df160ebb6b187086e00c8dc20867efe8e0f74843/bk_point2.geojson';
 var bk ='https://gist.githubusercontent.com/Ziqinwang/b57362aafe8a337595017951b6fc5aa1/raw/fee5f773540d9ffd368997d8265f6bc38656a44c/bk_block2.geojson';
 
